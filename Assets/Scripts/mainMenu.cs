@@ -15,8 +15,17 @@ public class mainMenu : MonoBehaviour
     private void Start()
     {
         Sprite[] textures = Resources.LoadAll<Sprite>("Player");
-        
+        foreach(Sprite texture in textures)
+        {
+            GameObject container = Instantiate(shopButtonPrefab) as GameObject;
+            container.GetComponent<Image>().sprite = texture;
+            container.transform.SetParent(shopButtonContainer.transform, false);
+        }
     }
 
+    public void lookAtMenu(Transform menuTransform)
+    {
+        Camera.main.transform.LookAt(menuTransform.position);
 
+    }
 }
